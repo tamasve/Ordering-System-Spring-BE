@@ -12,5 +12,5 @@ import java.util.List;
 public interface ProductRepository extends ListCrudRepository<Product, Long> {
 
     @Query(value = "SELECT new com.billingsystem.entity.ProductDTO( p.id, p.name, p.category.name, p.unit, p.price ) FROM Product p")
-    public List<ProductDTO> findAllWithCatName();
+    List<ProductDTO> findAllWithCatName();
 }
