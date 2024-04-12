@@ -9,39 +9,27 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
-@Table(name="customers")
-public class Customer {
+@Table(name = "status")
+public class Status {
 
     @Id
-    @Column(name = "cust_id")
+    @Column(name = "status_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
     @Column(unique = true, nullable = false)
     String name;
 
-    @ManyToOne
-    @JoinColumn(name = "segment_id", nullable = false)
-    Segment segment;
-
-    @Column(unique = true, nullable = false)
-    String email;
-
-    @Column(nullable = false)
-    String mobile;
-
+    @OneToMany(mappedBy = "status")
     @JsonBackReference
-    @OneToMany(mappedBy = "customer")
-    List<Order> orders;
+    List<Order>orderList;
 
-    public Customer(String name, String email, String mobile) {
+    public Status(String name) {
         this.name = name;
-        this.email = email;
-        this.mobile = mobile;
     }
 }

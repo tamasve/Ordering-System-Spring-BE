@@ -9,7 +9,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-public class ReactController {
+public class HomeController {
 
     private CategoryService categoryService;
     private ProductService productService;
@@ -18,8 +18,8 @@ public class ReactController {
     private OrderItemService orderItemService;
 
     @Autowired
-    public ReactController(CategoryService categoryService, ProductService productService, CustomerService customerService,
-                           OrderService orderService, OrderItemService orderItemService) {
+    public HomeController(CategoryService categoryService, ProductService productService, CustomerService customerService,
+                          OrderService orderService, OrderItemService orderItemService) {
         this.categoryService = categoryService;
         this.productService = productService;
         this.customerService = customerService;

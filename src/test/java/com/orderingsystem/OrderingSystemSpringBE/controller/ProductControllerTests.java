@@ -1,10 +1,7 @@
 package com.orderingsystem.OrderingSystemSpringBE.controller;
 
-import com.orderingsystem.OrderingSystemSpringBE.entity.Category;
-import com.orderingsystem.OrderingSystemSpringBE.entity.Customer;
 import com.orderingsystem.OrderingSystemSpringBE.entity.ProductDTO;
 import com.orderingsystem.OrderingSystemSpringBE.service.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,58 +21,22 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.mockito.Mockito.when;
 
-@WebMvcTest(controllers = ReactController.class)
+@WebMvcTest(controllers = HomeController.class)
 @AutoConfigureMockMvc(addFilters = false)
 @ExtendWith(MockitoExtension.class)
-public class ReactControllerTests {
+public class ProductControllerTests {
 
-    @Autowired
-    ObjectMapper objectMapper;
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private CategoryService categoryService;
-
-    @MockBean
     private ProductService productService;
 
-    @MockBean
-    private CustomerService customerService;
-
-    @MockBean
-    private OrderService orderService;
-
-    @MockBean
-    private OrderItemService orderItemService;
-
 
     @Test
-    public void ReactController_GetAllCategories_ReturnList() throws Exception{
-
-       Category category1 = Category.builder()
-                .name("food")
-                .build();
-        Category category2 = Category.builder()
-                .name("drink")
-                .build();
-        List<Category> categories = Arrays.asList(category1, category2);
-
-        when( categoryService.findAll() ).thenReturn(categories);       // mocking
-
-        ResultActions response = mockMvc.perform( MockMvcRequestBuilders.get("/categories")
-                .contentType(MediaType.APPLICATION_JSON));
-
-        response.andExpect(MockMvcResultMatchers.status().isOk())
-                            .andExpect(MockMvcResultMatchers.jsonPath("$.size()", CoreMatchers.is(categories.size() ) ))
-                            .andDo(MockMvcResultHandlers.print());      // print details
-    }
-
-    @Test
-    public void ReactController_findAllProductsWithCategoryName_ReturnList() throws Exception{
+    public void ProductController_findAllProductsWithCategoryName_ReturnList() throws Exception{
 
         List<ProductDTO> productList = Arrays.asList(
                 ProductDTO.builder()
@@ -112,30 +73,5 @@ public class ReactControllerTests {
                 .andDo(MockMvcResultHandlers.print());
     }
 
-    @Test
-    public void ReactController_FindAllCustomers_ReturnList() throws Exception {
-
-        List<Customer> customers = Arrays.asList(
-               Customer.builder()
-                       .name("Gipsz Jakab")
-                       .mobile("+36309879466")
-                       .email("gipszjakab@gmail.com")
-                       .build(),
-               Customer.builder()
-                       .name("Johanna Quebec")
-                       .mobile("+00956343555")
-                       .email("johannaquebec@gmail.com")
-                       .build()
-        );
-
-        when( customerService.findAll() ).thenReturn(customers);
-
-        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.get("/customers")
-                        .contentType(MediaType.APPLICATION_JSON));
-
-        response.andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(2))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.[:1].email").value(customers.get(0).getEmail()))
-                .andDo(MockMvcResultHandlers.print());
-    }
 
 }

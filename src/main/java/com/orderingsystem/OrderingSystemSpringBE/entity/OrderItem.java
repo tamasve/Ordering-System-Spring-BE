@@ -28,11 +28,11 @@ public class OrderItem {
     Product product;
 
     @Column(nullable = false)
-    double unit;
+    double quantity;
 
-    public OrderItem(Order order, Product product, double unit) {
+    public OrderItem(Order order, Product product, double quantity) {
         this.order = order;
         this.product = product;
-        this.unit = unit;
+        this.quantity = quantity;
     }
 }

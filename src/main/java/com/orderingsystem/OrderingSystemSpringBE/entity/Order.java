@@ -29,12 +29,18 @@ public class Order {
     @JoinColumn(name = "cust_id", nullable = false)
     Customer customer;
 
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    Status status;
+
     @JsonBackReference
     @OneToMany(mappedBy = "order")
     List<OrderItem> items;
 
-    public Order(Date date, Customer customer) {
+
+    public Order(Date date, Customer customer, Status status) {
         this.date = date;
         this.customer = customer;
+        this.status = status;
     }
 }
