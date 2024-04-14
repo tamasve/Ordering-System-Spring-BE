@@ -9,6 +9,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
+@RequestMapping("/orders")
 public class OrderController {
 
     private OrderService orderService;
@@ -21,16 +22,17 @@ public class OrderController {
     }
 
 
-    @GetMapping("/order/{id}")
+    @GetMapping("")
+    @ResponseBody
+    public List<OrderItem> orders() {
+        return orderItemService.findAll();
+    }
+
+    @GetMapping("{id}")
     @ResponseBody
     public List<OrderDTO> order(@PathVariable Long id) {
         return orderItemService.findAllByOrderId(id);
     }
 
-    @GetMapping("/orders")
-    @ResponseBody
-    public List<OrderItem> orders() {
-        return orderItemService.findAll();
-    }
 
 }

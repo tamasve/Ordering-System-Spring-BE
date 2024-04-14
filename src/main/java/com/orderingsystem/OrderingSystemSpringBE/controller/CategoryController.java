@@ -9,6 +9,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
+@RequestMapping("/categories")
 public class CategoryController {
 
     private CategoryService categoryService;
@@ -18,7 +19,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/categories")
+    @GetMapping("")
     public List<Category> cats() {
         return categoryService.findAll();
     }
