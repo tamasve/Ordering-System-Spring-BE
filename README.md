@@ -1,7 +1,6 @@
-# Back-End of a Billing System - in Java Spring Boot
+# Back-End of an Ordering System - in Java Spring Boot
 
 ## used technologies:
-* Spring Data JPA - Hibernate
-* MySQL, Lombok
-* Spring Security (currently not active)
+* Spring Data JPA - Hibernate, JPQL
+* MSSQL, Lombok
 * Tests: JUnit, AssertJ, Mockito
