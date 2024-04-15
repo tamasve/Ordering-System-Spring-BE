@@ -2,6 +2,7 @@ package com.orderingsystem.OrderingSystemSpringBE.controller;
 
 import com.orderingsystem.OrderingSystemSpringBE.entity.Segment;
 import com.orderingsystem.OrderingSystemSpringBE.exception.EntityNotFoundException;
+import com.orderingsystem.OrderingSystemSpringBE.service.SegmentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
