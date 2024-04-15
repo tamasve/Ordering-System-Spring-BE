@@ -13,7 +13,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.FileInputStream;
 
-// == Initial  DATA LOADER TO DB from Excel files ==
+// == Initial  DATA LOADER TO DB from Excel files ==   originally
+// It will be used for mass data load from the Front-End
 
 //@Component
 public class DataInjector implements CommandLineRunner {
