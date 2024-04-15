@@ -28,7 +28,7 @@ public class Product {
     @Column(nullable = false)
     String name;
 
-    @Pattern(regexp = "\\w+", message = "Unit name should contain only letters!")
+    @Pattern(regexp = "[A-Za-z]{3,10}", message = "Unit name should contain only letters!")
     @Column(nullable = false)
     String unit;
 

@@ -23,7 +23,7 @@ public class ProductDTO {
     @Size(min = 3, message = "Category name should be at least 3 characters long!")
     private String category;
 
-    @Pattern(regexp = "\\w+", message = "Unit name should contain only letters!")
+    @Pattern(regexp =  "[A-Za-z]{3,10}", message = "Unit name should contain only letters!")
     private String unit;
 
     private double price;
