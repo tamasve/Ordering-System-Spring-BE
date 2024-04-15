@@ -1,8 +1,9 @@
 package com.orderingsystem.OrderingSystemSpringBE.controller;
 
 import com.orderingsystem.OrderingSystemSpringBE.entity.*;
-import com.orderingsystem.OrderingSystemSpringBE.exception.UserNotFoundException;
+import com.orderingsystem.OrderingSystemSpringBE.exception.EntityNotFoundException;
 import com.orderingsystem.OrderingSystemSpringBE.service.*;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,20 +25,21 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+
     @GetMapping("")
     public List<Customer> customers() {
         return customerService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Customer customers(@PathVariable Long id) {
+    public Customer findCustomer(@PathVariable Long id) {
         Customer customer = customerService.findById(id);
-        if (customer == null)  throw new UserNotFoundException("id not found: " + id);
+        if (customer == null)  throw new EntityNotFoundException("Customer not found with id: " + id);
         return customer;
     }
 
     @PostMapping("")
-    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
+    public ResponseEntity<Customer> createCustomer(@Valid @RequestBody Customer customer) {
         Customer newCustomer = customerService.save(customer);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -47,14 +49,8 @@ public class CustomerController {
     }
 
     @PutMapping("")
-    public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer) {
-
-        Long id = customer.getId();
-        Customer foundCustomer = customerService.findById(id);
-        if (foundCustomer == null)  throw new UserNotFoundException("id not found: " + id);
-
-        Customer savedCustomer = customerService.save(customer);
-        return new ResponseEntity<>(savedCustomer, HttpStatus.OK);
+    public ResponseEntity<Customer> updateCustomer(@Valid @RequestBody Customer customer) {
+        return new ResponseEntity<>(customerService.update(customer), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

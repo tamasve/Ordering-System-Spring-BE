@@ -10,8 +10,8 @@ import java.util.List;
 public interface OrderItemRepository extends ListCrudRepository<OrderItem, Long> {
 
 // complex query for orders
-    @Query(value = "SELECT new com.billingsystem.entity.OrderDTO( " +
-            "oi.id, oi.order.date, oi.order.customer.name, oi.product.name, oi.product.price, oi.unit)" +
+    @Query(value = "SELECT new com.orderingsystem.OrderingSystemSpringBE.entity.OrderDTO( " +
+            "oi.id, oi.order.date, oi.order.customer.name, oi.product.name, oi.product.price, oi.quantity)" +
             " FROM OrderItem oi WHERE oi.id = ?1 ")
     List<OrderDTO> findAllByOrderId(Long id);
 }

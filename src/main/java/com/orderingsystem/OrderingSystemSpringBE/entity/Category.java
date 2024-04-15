@@ -2,6 +2,7 @@ package com.orderingsystem.OrderingSystemSpringBE.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @Size(min = 3, message = "Category name should be at least 3 characters long!")
     @Column(nullable = false)
     String name;
 

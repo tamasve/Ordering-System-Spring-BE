@@ -15,7 +15,7 @@ import java.io.FileInputStream;
 
 // == Initial  DATA LOADER TO DB from Excel files ==
 
-@Component
+//@Component
 public class DataInjector implements CommandLineRunner {
 	
 	public Logger log = LoggerFactory.getLogger(this.getClass());
@@ -115,31 +115,31 @@ public class DataInjector implements CommandLineRunner {
 			}
 		}
 
-		log.info("CommandLineRunner -- Orders... >>");
-
-		if (orderRepository.findAll().isEmpty()) {
-			String fileLocation = "orders.xlsx";
-
-			Workbook workbook = new XSSFWorkbook(new FileInputStream(fileLocation));
-			Sheet sheet = workbook.getSheet("orders");
-
-			for (Row row : sheet) {
-//				log.info(">> data row of " + row.getCell(0).getStringCellValue());
-				if (row.getRowNum() != 0) {
-					Long id = Double.valueOf( row.getCell(1).getNumericCellValue() ).longValue();
-					log.info(">> id: " + id.toString());
-					try {
-						orderRepository.save(
-								new Order(
-										row.getCell(0).getDateCellValue(),
-										customerRepository.findById( id ).orElseThrow()
-								));
-					} catch (Exception e) {
-						log.error("Inserting row " + row.getRowNum() + " into DB failed");
-					}
-				}
-			}
-		}
+//		log.info("CommandLineRunner -- Orders... >>");
+//
+//		if (orderRepository.findAll().isEmpty()) {
+//			String fileLocation = "orders.xlsx";
+//
+//			Workbook workbook = new XSSFWorkbook(new FileInputStream(fileLocation));
+//			Sheet sheet = workbook.getSheet("orders");
+//
+//			for (Row row : sheet) {
+////				log.info(">> data row of " + row.getCell(0).getStringCellValue());
+//				if (row.getRowNum() != 0) {
+//					Long id = Double.valueOf( row.getCell(1).getNumericCellValue() ).longValue();
+//					log.info(">> id: " + id.toString());
+//					try {
+//						orderRepository.save(
+//								new Order(
+//										row.getCell(0).getDateCellValue(),
+//										customerRepository.findById( id ).orElseThrow()
+//								));
+//					} catch (Exception e) {
+//						log.error("Inserting row " + row.getRowNum() + " into DB failed");
+//					}
+//				}
+//			}
+//		}
 
 		log.info("CommandLineRunner -- Order items... >>");
 

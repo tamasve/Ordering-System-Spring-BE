@@ -2,6 +2,7 @@ package com.orderingsystem.OrderingSystemSpringBE.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Past;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @Past(message = "Date should be in the past!")
     @Column(nullable = false)
     Date date;
 

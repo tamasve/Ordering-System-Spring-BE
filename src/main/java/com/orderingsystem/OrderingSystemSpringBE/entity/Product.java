@@ -2,6 +2,8 @@ package com.orderingsystem.OrderingSystemSpringBE.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,9 +24,11 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @Size(min = 3, message = "Product name should be at least 3 characters long!")
     @Column(nullable = false)
     String name;
 
+    @Pattern(regexp = "\\w+", message = "Unit name should contain only letters!")
     @Column(nullable = false)
     String unit;
 

@@ -1,6 +1,7 @@
 package com.orderingsystem.OrderingSystemSpringBE.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,7 @@ public class OrderItem {
     @JoinColumn(name = "prod_id", nullable = false)
     Product product;
 
+    @Positive(message = "Quantity of a product should be positive!")
     @Column(nullable = false)
     double quantity;
 
