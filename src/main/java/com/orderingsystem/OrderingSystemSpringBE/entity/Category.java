@@ -23,7 +23,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Size(min = 3, message = "Category name should be at least 3 characters long!")
+    @Size(min = 4, message = "Category name should be at least 4 characters long!")
     @Column(nullable = false)
     String name;
 

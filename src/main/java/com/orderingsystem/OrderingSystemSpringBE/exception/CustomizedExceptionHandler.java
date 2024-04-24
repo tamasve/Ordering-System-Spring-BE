@@ -43,7 +43,7 @@ public class CustomizedExceptionHandler extends ResponseEntityExceptionHandler {
 
         StringBuilder errors = new StringBuilder();
         errors.append( ex.getErrorCount() )
-                .append(" error(s) -- ");
+                .append(" error(s) ~~ ");
 
         for (FieldError error : ex.getFieldErrors()) {          // collect all errors into 1 string
             errors.append( error.getField() )
