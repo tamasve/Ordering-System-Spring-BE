@@ -60,10 +60,10 @@ public class WebSecurityConfiguration {
 
         return (args) -> {
             if (userDataRepository.findAll().isEmpty()) {
-                userDataRepository.save( new UserData(1, "tamas", "tamas987@gmail.com", passwordEncoder.encode("1234"), "ROLE_SALES", "", true) );
-                userDataRepository.save( new UserData(2, "joe", "joe876@gmail.com", passwordEncoder.encode("1234"), "ROLE_ACCOUNTANT", "", true) );
-                userDataRepository.save( new UserData(3, "admin", "admin765@gmail.com", passwordEncoder.encode("1234"), "ROLE_ADMIN", "", true) );
-                userDataRepository.save( new UserData(4, "zeno", "zeno654@gmail.com", passwordEncoder.encode("1234"), "ROLE_SALES,ROLE_ADMIN", "", true) );
+                userDataRepository.save( new UserData(1L, "tamas", "tamas987@gmail.com", passwordEncoder.encode("1234"), "ROLE_SALES", "", true) );
+                userDataRepository.save( new UserData(2L, "joe", "joe876@gmail.com", passwordEncoder.encode("1234"), "ROLE_ACCOUNTANT", "", true) );
+                userDataRepository.save( new UserData(3L, "admin", "admin765@gmail.com", passwordEncoder.encode("1234"), "ROLE_ADMIN", "", true) );
+                userDataRepository.save( new UserData(4L, "zeno", "zeno654@gmail.com", passwordEncoder.encode("1234"), "ROLE_SALES,ROLE_ADMIN", "", true) );
                 System.out.println("4 users were saved into DB");
             }
         };
