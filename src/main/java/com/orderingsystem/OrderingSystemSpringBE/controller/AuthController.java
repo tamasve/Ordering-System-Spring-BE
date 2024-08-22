@@ -22,8 +22,11 @@ public class AuthController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
+    private final AuthenticationManager authenticationManager;
     @Autowired
-    private AuthenticationManager authenticationManager;
+    public AuthController(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
+    }
 
     private UserService userService;
     @Autowired
